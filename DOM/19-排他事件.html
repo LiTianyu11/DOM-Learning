@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn{
+            color: red;
+            font-size: large;
+            margin: 10px;
+            border: none;
+
+        }
+    </style>
+</head>
+
+<body>
+    <button>1</button>
+    <button>1</button>
+
+    <button>1</button>
+    <button>1</button>
+    <button>1</button>
+    <button>1</button>
+    <script>
+        let btns = document.getElementsByTagName('button');
+        for (let i = 0; i < btns.length; i++) {
+            //未所有btn绑定事件
+            btns[i].onclick = function () {
+                //绑定的排他事件如下：
+                for (let i = 0; i < btns.length; i++) {
+                    btns[i].className = ''
+                }
+                btns[i].className = 'btn'
+
+            }
+        }
+    </script>
+</body>
+
+</html>

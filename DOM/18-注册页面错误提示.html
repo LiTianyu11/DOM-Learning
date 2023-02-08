@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .message {
+            display: inline;
+            margin: 10px;
+            font-size: small;
+        }
+
+        .wrong {
+
+            color: red;
+
+        }
+        .right{
+
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="text">
+        <p class="message">请输入6-16位数字</p>
+    </div>
+
+    <script>
+        let input = document.querySelector('input')
+        let message = document.querySelector('.message')
+        input.onblur = () => {
+            if (input.value.length < 6) {
+                message.className = 'message wrong'
+                message.innerHTML = "wrong"
+            } else {
+                message.className = 'message right'
+                message.innerHTML = "right"
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

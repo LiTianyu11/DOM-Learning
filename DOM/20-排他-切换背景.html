@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            display: inline;
+
+        }
+
+        img {
+            width: 200px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <li><img src="../pic/hình-ảnh.jpg"></li>
+    <li><img src="../pic/Image_created_with_a_mobile_phone.png"></li>
+    <li><img src="../pic/jez0ajdoxcnrpawbuigb.jpg"></li>
+    <script>
+        let imgs = document.querySelectorAll('img')
+        for (let i = 0; i < imgs.length; i++) {
+            imgs[i].onclick = function () {
+                document.body.style.backgroundImage = `url(${this.src})`
+                //TODO 'url(' +this.src+ ')'    +是连接字符串的
+                //'url(http://127.0.0.1:5500/pic/Image_created_with_a_mobile_phone.png)'
+                // '1' + 1 + '1' = '111'
+            }
+        }
+    </script>
+</body>
+
+</html>

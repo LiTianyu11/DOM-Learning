@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 400px;
+            border-bottom: 1px solid rgb(206, 206, 206);
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .box input {
+            width: 300px;
+            outline: none;
+            border: none;
+            margin: 5px;
+        }
+
+        .box img {
+            width: 24px;
+            position: absolute;
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <label ><img src="https://cdn-icons-png.flaticon.com/512/2874/2874802.png" id="eye"> </label>
+        <input type="password" id="pwd">
+        <!-- TODO <img>没有完全闭合导致下面0-1切换出现了问题 -->
+        
+
+
+        <!-- https://cdn-icons-png.flaticon.com/512/2355/2355322.png -->
+
+    </div>
+
+    <script>
+        var pwd = document.getElementById('pwd')
+        var eye = document.getElementById("eye")
+        var flag = 0;
+
+
+        eye.onclick = function () {
+
+
+
+            if (flag == 0) {
+                pwd.type = "text"
+                flag = 1;
+                eye.src = "https://cdn-icons-png.flaticon.com/512/2355/2355322.png"
+                console.log('1')
+
+            } else {
+                pwd.type = "password";
+                flag = 0;
+                eye.src = "https://cdn-icons-png.flaticon.com/512/2874/2874802.png"
+                console.log("0")
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
