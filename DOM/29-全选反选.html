@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>
+
+                    <label> <input type="checkbox"> 全选</label>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" name="" id=""></th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></th>
+            </tr>
+        </tbody>
+
+        <script>
+            let th = document.querySelector('thead').querySelector('input')
+            let tds = document.querySelector('tbody').querySelectorAll('input')
+
+            th.onclick = function () {
+                // if (th.checked === true) {
+                //     for (let i = 0; i < tds.length; i++) {
+                //         tds[i].checked = true
+                //     }
+                // } else {
+                //     for (let i = 0; i < tds.length; i++) {
+                //         tds[i].checked = false
+                //     }
+                // }
+                //TODO 一个巧妙的方法实现全选
+                for (let i = 0; i < tds.length; i++) {
+                    tds[i].checked = this.checked
+                }
+
+            }
+
+            for (let i = 0; i < tds.length; i++) {
+
+                // tds[i].onclick = function () {
+                //     if (tds[i].checked === false) {
+                //         th.checked = false
+                //     } else {
+                //         //TODO tds全选后，th也要勾选上
+                //         th.checked = true
+                //         for (let i = 0; i < tds.length; i++) {
+                //             if (tds[i].checked === false) {
+                //                 th.checked = false
+                //             }
+                //         }
+                //     }
+
+
+                // }
+                //TODO flag方法
+                let flag = true;
+                tds[i].onclick = function () {
+                    for (let i = 0; i < tds.length; i++) {
+                        if (tds[i].checked === false) {
+                            flag = false;
+                            break;
+                        } else {
+                            flag = true
+                        }
+                    }
+
+                    th.checked = flag
+                }
+
+
+            }
+
+
+        </script>
+    </table>
+</body>
+
+</html>

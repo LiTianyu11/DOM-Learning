@@ -81,3 +81,15 @@ element.style单个修改会更加方便
 [21-表格隔行变色效果](21-表格隔行变色效果.html)
 - 鼠标经过 onmouseover 鼠标离开 onmouseout
 
+
+## 全选反选
+[全选反选](29-全选反选.html)
+
+## 自定义属性操作（也可以用于内置属性操作）
+- 自定义属性的获取 element.getAttribute('自定义属性') 
+- 自定义属性的更改 element.setAttribute('自定义属性','值')
+- 移除属性 element.removeAttribute('属性')   
+
+[⭐33 - tab栏切换](/DOM/33-tab栏切换(how%20to%20tabs).html)
+
+## 
