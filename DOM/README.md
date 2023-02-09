@@ -114,13 +114,15 @@ element.style单个修改会更加方便
 
 ## 节点操作 - 1
 - **父节点操作** element.parentNode
-- **子节点操作** [Dropdown Menu](41-下拉菜单Dropdown_Menu.html)
+- **子节点操作** 
   - element.childNodes，包含了元素节点、文本节点等等
   - **element.children** 只获得了元素节点（非标准，但实际开发常用，兼容性也没问题）
   - 获得第一个子节点/最后一个子节点
     - .firstchild/.lastchild，也包括了元素节点、文本节点等等
     - .firstElementChild/.lastElementChild 只获得元素节点 （ie9以上支持）
     - **实际开发写法**：element.children[0] / element.children[element.children.length-1]
+
+[Dropdown Menu](41-下拉菜单Dropdown_Menu.html)
 - 兄弟节点操作（实际使用较少）
   - element.nextSibling/previousSibling 包括了元素节点、文本节点等等，可以封装一个函数，将type = 1的筛选出来
   - element.nextElementSibling/previousElementSibling 只获得元素节点，兼容性不好
@@ -131,9 +133,9 @@ element.style单个修改会更加方便
 - 添加节点 
   - node.appendChild(child)，插入node的最后一个孩子的后面
   - node.insertBefore(child, 指定元素)，插入node指定孩子的前面
-- 删除节点 node.removeChild(child)
-[Simple Comment Box](44-简单留言板.html)
-[创建动态表格](49-创建动态表格.html)
+- 删除节点 node.removeChild(child)    
+
+[Simple Comment Box](44-简单留言板.html) , [创建动态表格](49-创建动态表格.html)
 - 复制节点 
   - node.cloneNode() 只是克隆了，并没有添加，**若括号为空或者false，就是为浅拷贝，只复制标签不复制里面的内容**
 
