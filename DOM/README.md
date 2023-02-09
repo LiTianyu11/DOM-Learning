@@ -131,12 +131,11 @@ element.style单个修改会更加方便
 ## 节点操作 - 2
 - 创建节点 document.createElement('element')
 - 添加节点 
-  - node.appendChild(child)，插入node的最后一个孩子的后面
-  - node.insertBefore(child, 指定元素)，插入node指定孩子的前面
+  - **node.appendChild(child)**，插入node的最后一个孩子的后面
+  - **node.insertBefore(child, 指定元素)**，插入node指定孩子的前面
 - 删除节点 node.removeChild(child)    
 
-- [Simple Comment Box](44-简单留言板.html) 
--  [创建动态表格](49-创建动态表格.html)
+- [Simple Comment Box](44-简单留言板.html) , [创建动态表格](49-创建动态表格.html)
 - 复制节点 
   - node.cloneNode() 只是克隆了，并没有添加，**若括号为空或者false，就是为浅拷贝，只复制标签不复制里面的内容**
 
