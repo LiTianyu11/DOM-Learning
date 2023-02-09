@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+
+            <div class="dropdown-content">
+                <a href="">link1</a>
+                <a href="">link2</a>
+                <a href="">link3</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+
+            <div class="dropdown-content">
+                <a href="">link1</a>
+                <a href="">link2</a>
+                <a href="">link3</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+
+            <div class="dropdown-content">
+                <a href="">link1</a>
+                <a href="">link2</a>
+                <a href="">link3</a>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <script>
+        let nav = document.querySelector('.nav')
+        let dropdown = nav.children;
+
+
+        
+        for (let i = 0; i < dropdown.length; i++) {
+
+            //获取btn以及content
+            let btn = dropdown[i].children[0]
+            let content = dropdown[i].children[1]
+
+
+            //更改鼠标经过-content显示，以及-btn颜色变化
+            dropdown[i].onmouseover = function () {
+                btn.style.backgroundColor = '#3e8e41'
+                content.style.display = 'block'
+            }
+            dropdown[i].onmouseout = function () {
+                btn.style.backgroundColor = ''
+                content.style.display = 'none'
+            }
+
+
+            //获取links，更改鼠标经过时，内部a的颜色变化
+            let links = content.children
+            for (let j = 0; j < links.length; j++) {
+                links[j].onmouseover = function () {
+                    this.style.backgroundColor = '#f1f1f1'
+                }
+                links[j].onmouseout = function () {
+                    this.style.backgroundColor = ''
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

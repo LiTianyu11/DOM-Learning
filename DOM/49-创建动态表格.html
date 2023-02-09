@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        let datas = [
+            {
+                name: 'li',
+                score: 25,
+                subject: 'java'
+            },
+            {
+                name: 'lia',
+                score: 15,
+                subject: 'java'
+            },
+            {
+                name: 'lib',
+                score: 30,
+                subject: 'java'
+            }
+        ]
+        tbody = document.querySelector('tbody')
+        for (let i = 0; i < datas.length; i++) {
+            let tr = document.createElement('tr');
+            console.log(tr);
+            tbody.appendChild(tr)
+            for (let e in datas[i]) {
+                let td = document.createElement('td')
+                td.innerHTML = datas[i][e];
+                tr.appendChild(td);
+            }
+            let td = document.createElement('td')
+            td.innerHTML = '<a href="#">delete</a>'
+            tr.appendChild(td)
+
+            td.onclick = function () {
+                //  tr.parentNode.removeChild(tr)
+
+                tbody.removeChild(this.parentNode)
+            }
+        }
+
+    </script>
+</body>
+
+</html>

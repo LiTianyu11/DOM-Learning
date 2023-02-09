@@ -3,7 +3,7 @@ DOM - 文档对象模型，文档中的元素（文档内部标签）都可以�
 ```
 console.dir()??
 ```
-# ❤️获取元素
+# 获取元素
 
 ## document.getElementById()
 
@@ -28,7 +28,8 @@ document.body-<body>
 
 ## document.querySelector('.xxx').querySelectorAll('xx') 这样写是可以的
 
-# ❤️事件基础
+
+# 事件基础
 
 ## 事件源
 
@@ -37,7 +38,8 @@ document.body-<body>
 ## 事件处理程序
 
 
-# ❤️操作元素
+
+# 操作元素
 获取事件源 => 对事件源进行修改
 
 ## innerText，非标准，去除空格和换行
@@ -92,4 +94,47 @@ element.style单个修改会更加方便
 
 [⭐33 - tab栏切换](/DOM/33-tab栏切换(how%20to%20tabs).html)
 
-## 
+## H5自定义属性 ie11支持（兼容性不太好）
+- 规定data-开头作为自定义属性名
+- 可以使用element.dataset.属性名 || element.dataset['属性名'] 来获取，若自定义属性名有-连接（list-name）需改成驼峰命名法（listName）
+- element.dataset是一个自定义属性集合
+
+
+# 节点操作
+相较于使用DOM来获取元素，节点利用父子兄关系获取节点操作更简洁，逻辑性更强，但兼容性较差
+
+
+## 节点概述
+- nodeType
+  - 元素节点为1
+  - 属性节点为2
+  - 文本节点为3（包括空格、换行）
+- nodeName
+- nodeValue
+
+## 节点操作 - 1
+- **父节点操作** element.parentNode
+- **子节点操作** [Dropdown Menu](41-下拉菜单Dropdown_Menu.html)
+  - element.childNodes，包含了元素节点、文本节点等等
+  - **element.children** 只获得了元素节点（非标准，但实际开发常用，兼容性也没问题）
+  - 获得第一个子节点/最后一个子节点
+    - .firstchild/.lastchild，也包括了元素节点、文本节点等等
+    - .firstElementChild/.lastElementChild 只获得元素节点 （ie9以上支持）
+    - **实际开发写法**：element.children[0] / element.children[element.children.length-1]
+- 兄弟节点操作（实际使用较少）
+  - element.nextSibling/previousSibling 包括了元素节点、文本节点等等，可以封装一个函数，将type = 1的筛选出来
+  - element.nextElementSibling/previousElementSibling 只获得元素节点，兼容性不好
+
+
+## 节点操作 - 2
+- 创建节点 document.createElement('element')
+- 添加节点 
+  - node.appendChild(child)，插入node的最后一个孩子的后面
+  - node.insertBefore(child, 指定元素)，插入node指定孩子的前面
+- 删除节点 node.removeChild(child)
+[Simple Comment Box](44-简单留言板.html)
+[创建动态表格](49-创建动态表格.html)
+- 复制节点 
+  - node.cloneNode() 只是克隆了，并没有添加，**若括号为空或者false，就是为浅拷贝，只复制标签不复制里面的内容**
+
+## javascript:;
