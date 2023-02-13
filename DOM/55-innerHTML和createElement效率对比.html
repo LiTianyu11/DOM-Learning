@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function innerHTMLArr() {
+            var d1 = new Date();
+            let arr = [];
+            for (let i = 0; i < 20000; i++) {
+                // arr.push(`<h1 style="width:100px; height:2px; border: 1px solid blue"></h1>`)
+                arr.push('<h1></h1>')
+            }
+
+            document.body.innerHTML += arr.join('')
+            var d2 = new Date()
+            console.log(d2 - d1);
+            console.log(d1,d2)
+            
+        }
+
+
+        function createElement() {
+            var d1 = new Date();
+            for (let i = 0; i < 20000; i++) {
+
+                let a = document.createElement(`h1`)
+                // a.style.width = '100px'
+                // a.style.height = '2px'
+                // a.style.border = '1px solid blue'
+
+                // document.body.appendChild(a) 
+                document.body.appendChild(a)
+
+            }
+
+
+            var d2 = new Date()
+            console.log(d2 - d1);
+            console.log(d1,d2)
+        }
+
+        function innerHTML(){
+            var d1 = new Date();
+            for(let i = 0 ; i < 100; i++){
+                document.body.innerHTML += '<h1></1>'
+            }
+            var d2 = new Date()
+            console.log(d2 - d1);
+            console.log(d1,d2)
+        }
+        createElement()
+        innerHTMLArr()
+    
+        
+        
+    </script>
+</body>
+
+</html>

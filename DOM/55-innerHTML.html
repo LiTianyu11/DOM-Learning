@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>demo</h1>
+
+    <ul id="list">
+        <li><a href="#">Item 1</a></li>
+        <li><a href="#">Item 2</a></li>
+        <li><a href="#">Item 3</a></li>
+    </ul>
+
+
+    <script>
+
+        const list = document.getElementById("list");
+
+        list.innerHTML += `<li><a href="#">Item ${list.children.length + 1}</a></li>`;
+        
+
+
+        let demo = document.querySelector('h1')
+        demo.innerHTML = 'change' //这一行放在document.body.innerHTML += 'xxxx' 就不会生效了
+
+        document.body.innerHTML += '<p>demo2</p>'
+
+
+        for (let i = 0; i < 50; i++) {
+            document.body.innerHTML += `<h1>${i}<h1>`
+        }
+
+    </script>
+</body>
+
+</html>

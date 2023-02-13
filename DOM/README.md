@@ -129,8 +129,10 @@ element.style单个修改会更加方便
 
 
 ## 节点操作 - 2
-- 创建节点 document.createElement('element')
-- document.write()，页面重绘（了解即可）
+- 创建节点 
+  - document.createElement('element')
+  - document.write()，页面重绘（了解即可）
+  - document.body.innerHTML = '<a>xxx</a>' 这种方式也可以创建元素，还可以使用for循环拼贴，document.body.innerHTML += '<a>xx</a>'
 - 添加节点 
   - **node.appendChild(child)**，插入node的最后一个孩子的后面
   - **node.insertBefore(child, 指定元素)**，插入node指定孩子的前面
@@ -140,6 +142,16 @@ element.style单个修改会更加方便
 - 复制节点 
   - node.cloneNode() 只是克隆了，并没有添加，**若括号为空或者false，就是为浅拷贝，只复制标签不复制里面的内容**
 
+
+## 创捷元素的区别
+-  创建的对象有属性更改时
+   -  document.createElement('element')，效率比innerHTML拼贴要快，比innerHTML通过数组形式拼贴(arr.push(`element`)，然后join在一起，之后再用appendChild拼贴)要慢
+-  创建的对象无属性更改
+   -  createElement('element')和innerHTML数组拼贴效率差不多，甚至createElement('element会更快')
+
+[55-innerHTML和createElement效率对比](55-innerHTML和createElement效率对比.html)
+
 ## javascript:;
+
 
 
