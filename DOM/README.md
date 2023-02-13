@@ -130,6 +130,7 @@ element.style单个修改会更加方便
 
 ## 节点操作 - 2
 - 创建节点 document.createElement('element')
+- document.write()，页面重绘（了解即可）
 - 添加节点 
   - **node.appendChild(child)**，插入node的最后一个孩子的后面
   - **node.insertBefore(child, 指定元素)**，插入node指定孩子的前面
@@ -140,3 +141,5 @@ element.style单个修改会更加方便
   - node.cloneNode() 只是克隆了，并没有添加，**若括号为空或者false，就是为浅拷贝，只复制标签不复制里面的内容**
 
 ## javascript:;
+
+
