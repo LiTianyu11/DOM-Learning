@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <input type="text">
+    <script>
+        let input = document.querySelector('input')
+        let h1 = document.querySelector('h1')
+        document.addEventListener('keyup', function (e) {
+            if (e.key == 's') {
+                input.focus()
+            }
+            if (e.key == 'Escape') {
+                input.blur()
+            }
+        })
+
+
+
+        input.addEventListener('keyup', function () {
+            h1.innerText = input.value
+        })
+        input.addEventListener('blur', function () {
+            h1.style.display = 'none'
+        })
+        input.addEventListener('focus', function () {
+            if (input.value !== '') {
+                h1.style.display = 'block'
+            }
+        })
+    </script>
+
+</body>
+
+</html>

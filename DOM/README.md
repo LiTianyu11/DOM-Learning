@@ -201,6 +201,13 @@ element.style单个修改会更加方便
 - keyup
 - 事件执行顺序：keydown -> keypress -> keyup
 
-键盘事件对象 keyboardEvent
-- key 兼容性有问题
-- keyCode 返回按下的ASCII码
+**键盘事件对象 keyboardEvent**
+- key 
+- **keyCode** 返回按下的ASCII码，现已被弃用
+  - keydown、keyup不区分大小写
+  - keypress区分大小写
+[快捷键定位搜索框.html](73-快捷键定位搜索框.html) 
+- HTMLElement.focus()，可以让input框focus
+
+
+[搜索框内容放大.html](75-搜索框内容放大.html)
