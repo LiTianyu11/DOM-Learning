@@ -143,7 +143,7 @@ element.style单个修改会更加方便
   - node.cloneNode() 只是克隆了，并没有添加，**若括号为空或者false，就是为浅拷贝，只复制标签不复制里面的内容**
 
 
-## 创捷元素的区别
+## 创捷元素的效率区别
 -  创建的对象有属性更改时
    -  document.createElement('element')，效率比innerHTML拼贴要快，比innerHTML通过数组形式拼贴(arr.push(`element`)，然后join在一起，之后再用appendChild拼贴)要慢
 -  创建的对象无属性更改
@@ -154,4 +154,53 @@ element.style单个修改会更加方便
 ## javascript:;
 
 
+# 事件高级
 
+## 注册事件
+- 传统注册事件：事件类型以on开头，同一个元素同一个事件只能设置一个注册事件
+- 方法监听注册事件（w3c标准，推荐方式）：addEventListener()，IE9之间IE不支持，事件类型不以on开头，同一个元素同一个事件可以添加多个监听
+  - element.addEventListenr('click', fn) ， 注意这里的fn不用加()
+
+
+## 删除事件（解绑事件）
+- 传统方式，例如：element.onclick = null 
+- 监听方式：eventTarget.removeEventListener(type,listenr[,useCapture])，listener不能是匿名函数
+
+
+## DOM事件流
+事件流描述的是从页面中接受事件的顺序    
+捕获阶段（从上向下）- 冒泡阶段（从下向上）  
+[62-DOM事件流](62-DOM事件流.html)  
+有些事件是没有冒泡的
+
+## 事件对象
+事件对象与事件相关，事件不存在，事件对象就不存在，eventTarget.onclick = function(evt){} , ie9以下通过window.event来获取事件对象
+- e.target 返回的是触发事件的对象，this返回的是绑定事件的对象
+- [64-e.target和this](64-e.target和this.html)
+
+**event.preventDefault()**  阻止默认行为，例如不让链接跳转，不让按钮提交
+ - 直接 return false 也可以阻止默认行为，ie低版本还可以用returnValue  
+
+**e.stopPropagation()** 阻止冒泡 在下层的元素的事件中添加，可以防止之上的元素冒泡
+- ie: window.event.cancelBubble = true
+
+## 事件委托(代理) ⭐
+- **原理：不在给每个子节点单独设置事件监听器，而是事件监听器设置在其父节点上，然后通过冒泡原理影响每个子节点**
+- 例如给ul添加注册事件，利用target找到当前的li，点击li会冒泡到ul，ul有注册事件，就触发了监听器
+- 只操作了一次DOM，提高了程序性能
+- 冒泡，捕获都可以？
+- [事件委托.html](67-事件委托.html)
+
+## 常用鼠标事件
+- 鼠标事件对象：e.clientX/Y  **e.pageX/Y** e.screenX/y
+- mousemove [跟随鼠标.html](70-跟随鼠标.html) 
+
+## 常用键盘事件
+- keydown
+- keypress 不识别功能键Ctrl，Shift...
+- keyup
+- 事件执行顺序：keydown -> keypress -> keyup
+
+键盘事件对象 keyboardEvent
+- key 兼容性有问题
+- keyCode 返回按下的ASCII码

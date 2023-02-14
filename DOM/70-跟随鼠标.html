@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            position: absolute;
+            /* TODO position:absolute */
+            
+        }
+    </style>
+</head>
+<img src="../pic/hình-ảnh.jpg"  width="100px" alt="" >
+
+<body>
+    <script>
+        let img = document.querySelector('img')
+        document.addEventListener('mousemove', function (e) {
+            console.log(e.pageX)
+            img.style.left = `${e.pageX - 50}px` //记得要加单位
+            img.style.top =  `${e.pageY - 20}px` //pageY越大，img约靠下，pageY约小，img约靠上
+        })
+
+    </script>
+</body>
+
+</html>

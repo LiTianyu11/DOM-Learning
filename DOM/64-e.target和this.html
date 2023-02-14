@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>dd
+    <p>demo</p>
+    <script>
+        let p = document.querySelector('p')
+        document.body.addEventListener('click',function(e){
+            console.log(e.target) //触发对象，我点p就显示p，我点body就显示body
+            console.log(this); //绑定事件的对象，这里绑定的是body，不管我点p还是body，显示的都是body
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            width: 200px;
+            height: 200px;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son">
+
+        </div>
+    </div>
+
+    <script>
+        let father = document.querySelector('.father')
+        let son = document.querySelector('.son')
+        function fn() {
+            console.log(this)
+        }
+ 
+        //捕获阶段 从上而下
+        // father.addEventListener('click',fn,true)
+        // son.addEventListener('click',fn,true)
+
+        //冒泡阶段 从下而上
+        father.addEventListener('click',fn,false)
+        son.addEventListener('click',fn,false)
+        
+
+
+    </script>
+</body>
+
+</html>
