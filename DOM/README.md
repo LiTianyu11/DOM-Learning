@@ -1,45 +1,34 @@
-一个页面就是一个文档  
-DOM - 文档对象模型，文档中的元素（文档内部标签）都可以看作为一个对象，可以使用对象方法  
-```
-console.dir()??
-```
-# 获取元素
+# DOM 基础
 
-## document.getElementById()
-
-## document.getElementsByTagName() 获取某些元素，伪数组形式储存，若找不到元素，则返回空的伪数组 
-
-element.getElementsByTagName()，element是指定的父元素（不能是以伪数组形式，用以对象形式）
-可以先给父元素一个id，通过document.getElementById()来获取父元素对象 
-
- ## 根据类名获取元素 class - HTML5新增
- document.getElementByClassName()
-
- ## document.querySelector("选择器")  - HTML5新增
- 可以选择任意的选择器，但只能选择指定选取器的第一个
-
- ## document.querySelectorAll("选择器")  - HTML5新增
-
-HTML5不兼容iE9以下的，若考虑兼容性就无法使用新功能
-
-## 获取特殊元素，例如<html> <body>
-document.documentElement-<html>  
-document.body-<body>
-
-## document.querySelector('.xxx').querySelectorAll('xx') 这样写是可以的
+- 一个页面就是一个文档  
+- DOM - 文档对象模型，文档中的元素（文档内部标签）都可以看作为一个对象，可以使用对象方法  
 
 
-# 事件基础
+## 获取元素
+- document.getElementById()，可以先给父元素一个id，通过document.getElementById()来获取父元素对象 
+- element.getElementsByTagName()，element是指定的父元素（不能是以伪数组形式，用以对象形式）
+-  document.getElementsByTagName() 获取某些元素，伪数组形式储存，若找不到元素，则返回空的伪数组 
+-  HTML5新增
+   -  document.getElementByClassName()
+   -  document.querySelector("选择器")
+   -  document.querySelectorAll("选择器")
+
+- 获取特殊元素
+  - document.documentElement-<html>  
+  - document.body-<body>
+
+ document.querySelector('.xxx').querySelectorAll('xx') 这样写是可以的
+
+
+## 事件基础
+- 事件源
+- 事件类型（如何触发）
+- 事件处理程序
 
 ## 事件源
 
-## 事件类型 
-如何触发
-## 事件处理程序
 
-
-
-# 操作元素
+## 操作元素
 获取事件源 => 对事件源进行修改
 
 ## innerText，非标准，去除空格和换行
