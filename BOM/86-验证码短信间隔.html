@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <button>发送</button>
+    <script>
+        let button = document.querySelector('button')
+        button.addEventListener('click', function () {
+            button.disabled = true
+            button.innerHTML = 5
+            let gap = setInterval(fn, 1000) //要写成fn，而不是fn()
+
+            function fn() {
+
+                if (+button.innerHTML === 1) {
+                    clearInterval(gap)
+                    button.disabled = false
+                    button.innerHTML = '发送'
+                } else {
+                    button.innerHTML = `${+button.innerHTML - 1} `
+                    console.log('1')
+                }
+            }
+
+        })
+
+
+
+
+    </script>
+</body>
+
+</html>

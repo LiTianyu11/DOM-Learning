@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            margin: 10px;
+            padding: 10px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <span class="hour">1</span>小时
+    <span class="minute">0</span>分钟
+    <span class="second">3</span>秒
+
+    <script>
+
+
+        let hour = document.querySelector('.hour')
+        let minute = document.querySelector('.minute')
+        let second = document.querySelector('.second')
+
+        setInterval(countDown, 1000);
+
+        function fn() {
+
+            console.log(`${+second.innerHTML - 1}`);
+            //秒
+            if (+second.innerHTML == 0) {
+                //分钟
+                if (+minute.innerHTML == 0) {
+                    //小时
+                    if (+hour.innerHTML == 0) {
+                        clearInterval(fn())
+                    } else {
+                        hour.innerHTML = `${+hour.innerHTML - 1}`
+                    }
+                    minute.innerHTML = '59'
+
+                } else {
+                    minute.innerHTML = `${+minute.innerHTML - 1}`
+                }
+                second.innerHTML = '59'
+            } else {
+                second.innerHTML = `${+second.innerHTML - 1}`
+            }
+        }
+
+
+        let inputTime = new Date('2023-2-15 22:00:00')
+
+        countDown() //因为setInterval第一次调用也有间隔，所有提前先调用一次
+        function countDown() {
+
+            let nowTime = new Date()
+            let times = (inputTime - nowTime) / 1000  //间隔的秒数
+
+            let h = parseInt(times / 60 / 60 % 24) //秒/60/60 = 小时 25%24 = 1   23%24 = 23
+
+            //TODO parseInt() In general, it's a bad idea to use parseInt() on non-strings, especially to use it as a substitution for Math.trunc(). It may work on small numbers:
+            h = h < 10 ? '0' + h : h;
+            hour.innerHTML = h
+
+            let m = Math.trunc(times / 60 % 60) //秒/60 = 分钟 %60得到当前小时内的分钟数
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m
+
+            let s = Math.trunc(times % 60) //当前分钟内的秒数
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s
+        }
+    </script>
+</body>
+
+</html>
