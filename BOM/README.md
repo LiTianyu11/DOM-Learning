@@ -26,8 +26,9 @@ document.addEventListener('DOMContentLoaded',function(){})
 window.onresize()
 - 浏览器大小一变化就会激活事件
 
-window.setTimeout(function(){}/fn,间隔时间)  
+window.setTimeout(fn,间隔时间)  
   - 若是调用函数fn，要写出fn，而不能写成fn()
+  
 window.setInterval()，第一次调用也有时间间隔
 - [倒计时效果.html](./84-倒计时效果.html) 用到了time相关的内容
 - [验证码短信间隔.html](./86-验证码短信间隔.html)
