@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bottom>h1 {
+            text-align: center;
+        }
+
+
+        /* position: fixed */
+        .top {
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            position: fixed;
+            /* left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%); */
+            display: none;
+
+        }
+
+
+        .title{
+            cursor: move;
+        }
+        input {
+            display: block;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bottom">
+        <h1>
+            点击,弹出登录框
+        </h1>
+    </div>
+
+    <div class="top">
+        <h1 class="title">title</h1>
+        <form action="">
+            <input type="text">
+            <input type="text">
+        </form>
+    </div>
+
+    <script>
+        let bottom = document.querySelector('.bottom')
+        let top1 = document.querySelector('.top')
+        let title = document.querySelector('.title')
+        bottom.addEventListener('click', function () {
+            top1.style.display = 'block'
+            document.body.style.backgroundColor = 'grey'
+        })
+
+
+        //鼠标按下,激活mousemove事件
+        title.addEventListener('mousedown', function (e) {
+            //获取模态框的位置
+            let x = e.pageX - top1.offsetLeft;
+            let y = e.pageY - top1.offsetTop
+
+            //拖动过程,更新模态框的位置,注意style.left要加单位
+            title.addEventListener('mousemove',move )
+            function move(e){
+                top1.style.left = ` ${e.pageX - x}px`
+                top1.style.top = ` ${e.pageY - y}px`
+                console.log(e.pageX - x)
+            }
+
+            //鼠标抬起后,移除mousemove事件
+            title.addEventListener('mouseup', function () {
+                title.removeEventListener('mousemove', move)
+            })
+
+        })
+
+
+    </script>
+
+</body>
+
+</html>

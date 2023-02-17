@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            /* position: relative */
+            background-color: #fff;
+            position: relative;
+            margin: 50px;
+        }
+
+        img {
+            width: 300px;
+
+
+        }
+
+        .zoom {
+            /* position: absolute */
+            width: 150px;
+            height: 150px;
+            background-color: blueviolet;
+            opacity: 0.5;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: move;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="../pic/Image_created_with_a_mobile_phone.png" alt="" class="pic">
+        <div class="zoom">1</div>
+    </div>
+
+    <script>
+        let zoom = document.querySelector('.zoom')
+        let pic = document.querySelector('.pic')
+        let box = document.querySelector('.box')
+        box.addEventListener('mousemove', function (e) {
+            //鼠标相对box的位置
+            let x = e.pageX - box.offsetLeft
+            let y = e.pageY - box.offsetTop
+
+            //zoom距离box的距离
+            let zoomX = x - zoom.offsetWidth / 2
+            let zoomY = y - zoom.offsetHeight / 2
+
+
+
+            //p108 - 边界的处理,跨越边界
+            //处理zoom左右边界
+            if (zoomX < 0) {
+                zoomX = 0
+            }
+            //如果zoom左侧相对图片左侧的距离大于图片宽度 - zoom宽度的话
+            else if (zoomX > pic.offsetWidth - zoom.offsetWidth) {
+                zoomX = pic.offsetWidth - zoom.offsetWidth
+            }
+
+            //处理zoom上下边界
+            if (zoomY < 0) {
+                zoomY = 0
+            } 
+            //如果zoom顶部相对图片顶部的距离大于图片高度-zoom高度的话
+            else if (zoomY > pic.offsetHeight - zoom.offsetHeight) {
+                zoomY = pic.offsetHeight - zoom.offsetHeight
+            }
+
+
+            zoom.style.left = `${zoomX}px`
+            zoom.style.top = `${zoomY}px`
+        })
+    </script>
+</body>
+
+</html>
