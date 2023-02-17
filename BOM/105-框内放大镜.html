@@ -31,6 +31,27 @@
             top: 0;
             cursor: move;
         }
+
+        .big{
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: blue;
+            top: 0;
+            left: 310px;
+           border: 1px solid red;
+        
+            /* overflow:hidden */
+        }
+
+        .big>img{
+            /*  position: absolute*/
+         
+            width: 600px;
+            position: absolute;
+        
+        }
+           
     </style>
 </head>
 
@@ -38,12 +59,21 @@
     <div class="box">
         <img src="../pic/Image_created_with_a_mobile_phone.png" alt="" class="pic">
         <div class="zoom">1</div>
+        <div class="big">
+            <img src="../pic/Image_created_with_a_mobile_phone.png" alt="" class="bigImg">
+        </div>
     </div>
+
+    
+
+     </div>
 
     <script>
         let zoom = document.querySelector('.zoom')
         let pic = document.querySelector('.pic')
         let box = document.querySelector('.box')
+        let bigImg = document.querySelector('.bigImg')
+            let big = document.querySelector('.big')
         box.addEventListener('mousemove', function (e) {
             //鼠标相对box的位置
             let x = e.pageX - box.offsetLeft
@@ -77,6 +107,24 @@
 
             zoom.style.left = `${zoomX}px`
             zoom.style.top = `${zoomY}px`
+
+           
+
+            //放大操作
+            let bigMaxX = bigImg.offsetWidth - big.offsetWidth
+            let zoomMaxX = pic.offsetWidth - zoom.offsetWidth
+
+                  
+            let bigMaxY = bigImg.offsetHeight - big.offsetHeight
+            let zoomMaxY = pic.offsetHeight - zoom.offsetHeight
+
+            let bigX = zoomX * bigMaxX/zoomMaxX
+            let bigY = zoomY * bigMaxY/zoomMaxY
+            // console.log(zoomX, zoomY)
+            // console.log(bigX, bigY)
+            console.log(bigImg.offsetLeft,bigImg.offsetTop )
+            bigImg.style.left = -bigX + 'px'
+            bigImg.style.top = -bigY + 'px'
         })
     </script>
 </body>
