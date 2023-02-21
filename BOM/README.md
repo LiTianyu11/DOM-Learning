@@ -113,3 +113,23 @@ offset
 - [拖动模态框Modal_Dialogue_Box.html](102.拖动模态框Modal_Dialogue_Box.html)
 - [⭐框内放大镜.html](105-框内放大镜.html)
 
+## client系列
+- client相关属性可以获得该元素的边框大小、元素大小等
+- .clientTop 返回元素上边框的大小
+- .clientLeft 返回元素左边框的大小
+- .clientWidth 返回自身包括padding、内容区宽度，但不包括边框，返回值不带单位
+- .clientHeight 返回自身包括padding、内容区高度，但不包括边框，返回值不带单位
+
+
+## 淘宝flexibel源码
+- 物理像素比 dpr devicePixelRation
+- window.pageshow事件 - 重新加载页面触发，避免已经缓存页面不触发一些事件
+
+
+
+
+## scroll系列
+element.scrollTop 返回被卷上去的上侧距离,返回数值不带单位
+element.scrollLeft  返回被卷上去的左侧距离,返回数值不带单位
+element.scrollWidth 返回自身**实际**（如果内容超出了盒子，会得到实际高度）的宽度，不含边框，返回数值不带单位
+element.scrollHeight 返回自身**实际**的高度，不含边框，返回数值不带单位

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fa-check-square:hover {
+            cursor: pointer;
+        }
+
+
+        .fa-square:hover {
+            cursor: pointer;
+        }
+
+        .fa-ul>li{
+
+            margin: 10px;
+        }
+
+        .fa-spinner:hover{
+            cursor:pointer;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div>
+        <i class="fa-solid fa-spinner fa-10x   "></i></i>
+    </div>
+
+    <script>
+        let spin = document.querySelector(' .fa-spinner')
+        spin.onclick = function(){
+           if(spin.className == 'fa-solid fa-spinner fa-10x'){
+            spin.className =  'fa-solid fa-spinner fa-10x fa-spin'
+           }else{
+            spin.className = 'fa-solid fa-spinner fa-10x'
+           }
+        }
+
+    </script>
+
+    <script></script>
+    <!-- <i class="fa-solid fa-bars fa-10x "></i> -->
+    <ul class="fa-ul">
+        <li><span class="fa-li"><i class="fa-solid fa-check-square" id="check"></i></span>List icons can</li>
+        <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>in lists</li>
+
+    </ul>
+
+    <span class="fa-stack fa-2x">
+        <i class="fa-solid fa-square fa-stack-2x" ></i>
+        <i class="fa-solid fa-phone fa-stack-1x" style="color: rgb(81, 247, 78) ;"></i>
+      
+      </span>
+    
+    <script src="https://kit.fontawesome.com/34faa623d9.js" crossorigin="anonymous">
+
+
+
+    </script>
+
+
+    <script>
+        let checkSquare = document.querySelector('.fa-check-square')
+        checkSquare.onclick = function () {
+            if (checkSquare.className == 'fa-solid fa-check-square') {
+                checkSquare.className = 'fa-regular fa-check-square'
+            } else {
+                checkSquare.className = 'fa-solid fa-check-square'
+            }
+        }
+
+
+
+        let square = document.querySelector('.fa-square')
+        square.onclick = function () {
+            if (square.className == 'fa-solid fa-square') {
+                square.className = 'fa-regular fa-square'
+            } else {
+                square.className = 'fa-solid fa-square'
+            }
+        }
+    </script>
+</body>
+
+</html>
