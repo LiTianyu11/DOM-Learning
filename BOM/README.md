@@ -133,3 +133,4 @@ element.scrollTop 返回被卷上去的上侧距离,返回数值不带单位
 element.scrollLeft  返回被卷上去的左侧距离,返回数值不带单位
 element.scrollWidth 返回自身**实际**（如果内容超出了盒子，会得到实际高度）的宽度，不含边框，返回数值不带单位
 element.scrollHeight 返回自身**实际**的高度，不含边框，返回数值不带单位
+
