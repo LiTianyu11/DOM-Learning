@@ -15,11 +15,11 @@ window.addEventListener('load', function () {
             window.addEventListener('keydown', (e) => {
                 if (((e.key === 'ArrowUp') || (e.key === 'ArrowDown')) && this.game.keys.indexOf(e.key) === -1) {
                     this.game.keys.push(e.key)
+                } else if (e.key === ' ') {
+                    this.game.player.shootTop()
                 }
 
                 //如果使用function(e)这里的this指向的时window不是InputHandler，所以这里可以改成使用箭头函数
-                console.log(this)
-                console.log(this.game.keys)
             })
 
             window.addEventListener('keyup', e => {
@@ -32,8 +32,34 @@ window.addEventListener('load', function () {
         }
     }
 
-    class Projectile {
 
+    //发射物
+    class Projectile {
+        constructor(game, x, y) {
+            this.game = game;
+            this.x = x;
+            this.y = y;
+            this.width = 10
+            this.height = 3;
+            this.speed = 3;
+            //是否被清除
+            this.markedForDeletion = false;
+        }
+
+        update() {
+            this.x += this.speed;
+            //子弹移动距离为game.width的80%就会被清除
+            if (this.x > this.game.width * 0.8) {
+                this.markedForDeletion = true
+            }
+
+        }
+
+        draw(context) {
+            context.fillStyle = 'yellow'
+            console.log(context)
+            context.fillRect(this.x, this.y, this.width, this.height)
+        }
     }
 
     class Particle {
@@ -48,16 +74,46 @@ window.addEventListener('load', function () {
             this.x = 20
             this.y = 10
             this.speedY = 0;
+            this.maxSpeed = 2;
+            this.projectiles = []
 
 
         }
 
         update() {
+            if (this.game.keys.includes('ArrowUp')) {
+                this.speedY = -this.maxSpeed
+            } else if (this.game.keys.includes('ArrowDown')) this.speedY = this.maxSpeed
+            else this.speedY = 0
             this.y += this.speedY
+
+            this.projectiles.forEach(projectile => {
+                projectile.update()
+            })
+
+            this.projectiles = this.projectiles.filter(projectile => !projectile.markedForDeletion)
         }
 
         draw(context) {
+            //context.fillStyle要先设置好
+            context.fillStyle = 'black'
             context.fillRect(this.x, this.y, this.width, this.height)
+            this.projectiles.forEach(projectile => {
+                console.log(projectile);
+                projectile.draw(context)
+            })
+        }
+
+        //发射物从player头顶发射
+        shootTop() {
+            if (this.game.ammo > 0) {
+                // x y 分别为玩家的坐标
+                this.projectiles.push(new Projectile(this.game, this.x + 70, this.y + 30))
+                this.game.ammo--;
+            }
+
+
+
         }
 
 
@@ -78,6 +134,7 @@ window.addEventListener('load', function () {
             this.player = new Player(this);
             this.input = new InputHandler(this)
             this.keys = []
+            this.ammo = 20;
         }
 
         //使用Player里面的方法
