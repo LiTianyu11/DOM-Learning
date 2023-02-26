@@ -4,7 +4,7 @@ window.addEventListener('load', function () {
     const canvas = document.getElementById('canvas1')
     const ctx = canvas.getContext('2d')
 
-    canvas.width = 500;
+    canvas.width = 1000;
     canvas.height = 500;
 
 
@@ -61,14 +61,39 @@ window.addEventListener('load', function () {
         draw(context) {
             context.drawImage(this.image, this.x, this.y)
         }
-    }
+    }   
 
+    //TODO 掉落部件 齿轮
     class Particle {
-        constructor(game,x,y){
+        constructor(game, x, y) {
             this.game = game;
             this.x = x;
             this.y = y;
-            this.images 
+            this.image = document.getElementById('gears')
+            this.frameX = Math.floor(Math.random() * 3)
+            this.frameY = Math.floor(Math.random() * 3)
+            this.spriteSize = 50;
+            this.sizeModifier = (Math.random() * 0.5 + 0.5).toFixed(1)
+            this.size = this.spriteSize * this.sizeModifier
+            this.speedX = Math.random() * 6 - 3
+            this.speedY = Math.random() * -15;
+            this.gravity = 0.5
+            this.markedForDeletion = false;
+            this.angle = 0;
+            this.va = Math.random() * 0.2 - 0.1
+        }
+        update() {
+            this.angle += this.va
+            this.speedY += this.gravity
+            this.x -= this.speedX;
+            this.y += this.speedY
+            if (this.y > this.game.height + this.size || this.x < 0 - this.size) {
+                this.markedForDeletion = true;
+            }
+        }
+
+        draw(context) {
+            context.drawImage(this.image, this.frameX * this.spriteSize, this.frameY * this.spriteSize, this.spriteSize, this.spriteSize, this.x, this.y, this.size, this.size)
         }
 
     }
@@ -251,7 +276,7 @@ window.addEventListener('load', function () {
             this.y = Math.random() * (this.game.height * 0.8 - this.height)
             this.image = document.getElementById('lucky')
             this.frameY = Math.floor(Math.random() * 2)
-            this.lives = 3;
+            this.lives = 2;
             this.score = 15
             this.type = 'lucky'
         }
@@ -381,10 +406,12 @@ window.addEventListener('load', function () {
             this.input = new InputHandler(this)
             this.ui = new UI(this)
             this.background = new Background(this)
+
             //key
             this.keys = []
             //enemy
             this.enemies = []
+            this.particles = [];
             this.enemyTimer = 0;
             this.enemyInterval = 1000;
             //ammo
@@ -394,7 +421,7 @@ window.addEventListener('load', function () {
             this.ammoInterval = 500;
             this.gameOver = false;
             this.score = 0;
-            this.winningScore = 20
+            this.winningScore = 2000
             this.gameTime = 0;
             this.timeLimit = 50000;
             this.speed = 1
@@ -422,6 +449,10 @@ window.addEventListener('load', function () {
                 this.ammoTimer += deltaTime
             }
 
+            //齿轮
+            this.particles.forEach(particle => particle.update());
+            this.particles = this.particles.filter(particle => !particle.markedForDeletion)
+
             //enemy
             this.enemies.forEach(enemy => {
                 enemy.update();
@@ -430,16 +461,28 @@ window.addEventListener('load', function () {
                     enemy.markedForDeletion = true
                     if (enemy.type == 'lucky') this.player.enterPowerUp()
                     else this.score--
+                    //掉落齿轮数
+                    for (let i = 0; i < enemy.lives * 2; i++) {
+                        this.particles.push(new Particle(this, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5))
+                    }
                 }
 
                 //判断敌人是否与发射物进行碰撞
                 this.player.projectiles.forEach(projectile => {
                     if (this.checkCollision(projectile, enemy)) {
+                        //发射物和敌人碰撞
                         enemy.lives--;
                         //发生撞击后子弹也要消失
                         projectile.markedForDeletion = true
+                        //掉落齿轮数
+                        for (let i = 0; i < 2; i++) {
+                            this.particles.push(new Particle(this, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5))
+                        }
+
+                        //敌人死亡
                         if (enemy.lives <= 0) {
                             enemy.markedForDeletion = true
+
                             if (!this.gameOver) {
                                 this.score += enemy.score;
                             }
@@ -466,6 +509,7 @@ window.addEventListener('load', function () {
             this.background.draw(context)
             this.player.draw(context)
             this.ui.draw(context)
+            this.particles.forEach(partile => partile.draw(context))
             //在enemies数组中的敌人才会绘制
             this.enemies.forEach(enemy => {
                 enemy.draw(context)
