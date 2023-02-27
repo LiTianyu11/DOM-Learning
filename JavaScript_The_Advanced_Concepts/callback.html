@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+
+        function loadScript(src) {
+            // 创建一个 <script> 标签，并将其附加到页面
+            // 这将使得具有给定 src 的脚本开始加载，并在加载完成后运行
+            let script = document.createElement('script');
+            console.log(script)
+            script.src = src;
+            document.head.append(script);
+        }
+
+
+        function loadScript(src, callback) {
+            let script = document.createElement('script');
+            script.src = src;
+            script.onload = () => newFunc()
+            script.onload = () => callback(script); //TODO 先执行
+          
+            document.head.append(script);
+            console.log(3)
+            
+        }
+
+
+
+
+        console.log(1)
+        console.log(2)
+        loadScript('./script1.js', script => {
+            console.log(script.src + ' is loaded')
+
+            loadScript('./script2.js', script => {
+                console.log(script.src + ' is loaded')
+            })
+        })
+        // newFunc() 无法调用
+    </script>
+</body>
+
+</html>
