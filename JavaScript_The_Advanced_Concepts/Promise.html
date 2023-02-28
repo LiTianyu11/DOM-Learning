@@ -10,13 +10,58 @@
 
 <body>
     <script>
-        let promise = new Promise(function (resolve, reject) {
-            setTimeout(() => resolve('done'), 1000)
 
-        })
-        
-        
+        // function delay(ms) {
+        //     // 你的代码
+        //     return new Promise(resolve => setTimeout(resolve, ms))
+        // }
 
+        // delay(3000).then(() => alert('runs after 3 seconds'));
+
+        const print = async () => {
+            return 'async'
+        }
+
+
+        print().then(res => { console.log(res) + '1' }) //异步 => 先添加到了回调队列
+        console.log('0123') // 先执行
+        print().then(res => { console.log(res + '2') })
+        print().then(res => { console.log(res + '3') })
+
+        //异步行为链
+        let promise = new Promise((resolve) => setTimeout(() => resolve(1), 1000))
+        promise.then((result) => new Promise((resolve) => {
+            setTimeout(() => resolve(result * 2), 1000)
+            console.log(result)
+        }))
+        .then((result) => new Promise((resolve) => {
+            setTimeout(() => resolve(result * 2), 1000)
+            console.log(result)
+        }))
+        .then((result) => new Promise((resolve) => {
+            setTimeout(() => resolve(result * 2), 1000)
+            console.log(result)
+        }))
+        .then((result) => new Promise((resolve) => {
+            setTimeout(() => resolve(result * 2), 1000)
+            console.log(result)
+        }))
+        .then((result) => new Promise((resolve) => {
+            setTimeout(() => resolve(result * 2), 1000)
+            console.log(result)
+        }))
+        .then((result) => new Promise((resolve) => {
+            setTimeout(() => resolve(result * 2), 1000)
+            console.log(result)
+        }))
+        .then((result) => new Promise((resolve) => {
+            setTimeout(() => resolve(result * 2), 1000)
+            console.log(result)
+        }))
+        .then((result) => new Promise((resolve) => {
+            setTimeout(() => resolve(result * 2), 1000)
+            console.log(result)
+        }))
     </script>
 </body>
 
