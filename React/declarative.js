@@ -1,3 +1,8 @@
+
+import nihao from './src/1'
+
+nihao()
+
 const h1 = document.createElement('h1')
 h1.innerHTML = ''
 h1.className = 'header'

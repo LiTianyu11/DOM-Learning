@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
+
 function App() {
   return (
     <div className="App">
@@ -23,3 +24,9 @@ function App() {
 }
 
 export default App;
+
+
+let p = new Promise((resolve) => console.log(1))
+p.then(() => console.log('2'))
+console.log(3)
+
