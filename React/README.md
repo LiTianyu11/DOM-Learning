@@ -235,3 +235,151 @@ https://scrimba.com/learn/learnreact/boxes-challenge-part-4-co2ee48359ffd4cb63f3
         })
     }
 ```
+- 错误点： 忘记加const之类的变量名
+
+```jsx
+function toggle(id) {
+        setSquares(prevSquares => {
+            return prevSquares.map((square) => {
+                return square.id === id ? {...square, on: !square.on} : square
+            })
+        })
+    }
+    
+```
+
+
+## useState箭头函数更替就对象
+
+```jsx
+  function handleChange(event) {
+        setFormData(data => { return { ...data, [event.target.name]: event.target.value } })
+    }
+
+//不能写成
+  function handleChange(event) {
+        setFormData(data =>  { ...data, [event.target.name]: event.target.value } })
+    }
+
+```
+
+## React 表单
+
+- placehoder开头一般大写
+```jsx
+<input
+                type="email"
+                placeholder="Email"
+                onChange={handleChange}
+                name="lastName"
+            />
+```
+
+```jsx
+//checkbox
+
+ <input 
+    type="checkbox" 
+    id="isFriendly" 
+/>
+    <label htmlFor="isFriendly">Are you friendly?</label>
+    //⭐htmlFor
+
+//更新handleChange
+  function handleChange(event) {
+        const {name, value, type, checked} = event.target
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [name]: type === "checkbox" ? checked : value
+            }
+        })
+    }
+    
+```
+
+
+```jsx
+//radio
+<fieldset>
+    <legend>Current employment status</legend>
+    
+    <input 
+        type="radio"
+        id="unemployed"
+        name="employment"
+        value="unemployed"
+        //这里的checked和checkbox有所不同
+        checked={formData.employment === "unemployed"}
+        onChange={handleChange}
+    />
+    <label htmlFor="unemployed">Unemployed</label>
+    <br />
+    
+    <input 
+        type="radio"
+        id="part-time"
+        name="employment"
+        value="part-time"
+        checked={formData.employment === "part-time"}
+        onChange={handleChange}
+    />
+    <label htmlFor="part-time">Part-time</label>
+    <br />
+    
+    <input 
+        type="radio"
+        id="full-time"
+        name="employment"
+        value="full-time"
+        checked={formData.employment === "full-time"}
+        onChange={handleChange}
+    />
+    <label htmlFor="full-time">Full-time</label>
+    <br />
+    
+</fieldset>
+```
+
+
+## React.useEffect()
+```jsx
+//有什么区别吗
+
+export default function WindowTracker() {
+    
+    const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
+    
+    React.useEffect(() => {
+        window.addEventListener("resize", function() {
+            setWindowWidth(window.innerWidth)
+        })
+    }, [])
+    
+    return (
+        <h1>Window width: {windowWidth}</h1>
+    )
+}
+
+//
+
+import React from "react"
+
+export default function WindowTracker() {
+
+    const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
+
+    React.useEffect(() => {
+        window.addEventListener("resize", function () {
+            setWindowWidth(window.innerWidth)
+            
+        })
+    }, [])
+
+
+    return (
+        <h1>Window width: {windowWidth}</h1>
+    )
+}
+
+```

@@ -1,26 +1,31 @@
+<input 
+type="radio"
+id="unemployed"
+name="employment"
+value="unemployed"
+checked={formData.employment === "unemployed"}
+onChange={handleChange}
+/>
+<label htmlFor="unemployed">Unemployed</label>
+<br />
 
-function toggle(id) {
-    setSquares(prev => {
-        const newSquares = [];
-        for (let i = 0; i < prev.length; i++) {
-            const currentSquare = prev[i];
-            if (prev.id === id) {
+<input 
+type="radio"
+id="part-time"
+name="employment"
+value="part-time"
+checked={formData.employment === "part-time"}
+onChange={handleChange}
+/>
+<label htmlFor="part-time">Part-time</label>
+<br />
 
-                if (currentSquare.id === id) {
-                    const updateSquare = {
-                        ...currentSquare,
-                        on: !currentSquare.on
-
-                    }
-                    newSquares.push(updateSquare)
-
-                } else {
-                    newSquares.push(updateSquare)
-                }
-            }
-
-            return newSquares
-        }
-    })
-
-}
+<input 
+type="radio"
+id="full-time"
+name="employment"
+value="full-time"
+checked={formData.employment === "full-time"}
+onChange={handleChange}
+/>
+<label htmlFor="full-time">Full-time</label>
