@@ -200,13 +200,28 @@ https://scrimba.com/learn/learnreact/boxes-challenge-part-32-unified-state-coc54
 ```jsx
 
 
-//father
-  function toggle(id) {
+//方法一
+    //father
+    function toggle(id) {
         console.log(id)
     }
 
-//child arrow function , props是传入child的参数
-onClick={()=>props.toggle(props.id)}
+    //child arrow function , props是传入child的参数
+    onClick={()=>props.toggle(props.id)}
+
+
+//方法二
+    //father
+        function holdDice(id){
+        console.log(id)
+    }
+    
+    
+    const diceElements = dice.map(die => (
+        <Die key={die.id} value={die.value} isHeld={die.isHeld} holdDice ={holdDice(die.id) } />
+    ))
+    
+// 使用箭头函数的是为了不让函数直接执行，如果直接写成{holdDice(die.id)}就会直接执行
 ```
 
 ## box Challenge part4
@@ -383,3 +398,6 @@ export default function WindowTracker() {
 }
 
 ```
+
+
+## array.every
