@@ -1,44 +1,56 @@
-import { useState } from "react";
+import React, { useState } from 'react'
 
 export default function TaskList({ tasks, onChange, onDelete }) {
-   
 
     return (
         <ul>
-            {tasks.map((task => <li key={task.id}><Task task={task} onChange={onChange} onDelete={onDelete} /></li>))}
+            {tasks.map(task => <Task key={task.id} task={task} onChange={onChange} onDelete={onDelete} />)}
         </ul>
     )
-
 }
 
 
 function Task({ task, onChange, onDelete }) {
-    console.log(task)
     const [isEditing, setIsEditing] = useState(false)
-    let taskContent = '';
+    let contentArea = '';
     if (isEditing) {
-        taskContent = (
+        contentArea =
             <>
-                <input type="text" value={task.text} onChange={e => onChange({ ...task, text: e.target.value })} />
-                <button onClick={() => setIsEditing(false)}>Save</button>
+                <input type="checkbox" />
+                <input type="text"
+                    value={task.text}
+                    onChange={e => {
+
+                        onChange({
+                            ...task,
+                            text: e.target.value
+                        })
+                    }}
+                />
+                <button
+                    onClick={() => setIsEditing(false)}
+                >Save</button>
 
             </>
-        )
+
     } else {
-        taskContent = (
+        contentArea =
             <>
+                <input type="checkbox" />
                 {task.text}
-                < button onClick={() => setIsEditing(true)}> Edit</button >
+                <button
+                    onClick={() => setIsEditing(true)}
+                >Edit</button>
+
             </>
 
-        )
     }
-    return (
-        <>
-            <input type="checkbox" onChange={e => onChange({ ...task, done: e.target.checked })} />
-            {taskContent}
-            < button onClick={() => onDelete(task)}>Delete</button>
-        </>
-    )
 
+
+    return (
+        <li key={task.id}>
+            {contentArea}
+            <button onClick={() => onDelete(task.id)}>Delete</button>
+        </li>
+    )
 }
