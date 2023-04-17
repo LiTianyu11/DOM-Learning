@@ -1,77 +1,34 @@
-import React, { useReducer, useState } from 'react'
-import TaskList from './TaskList'
+import React from 'react'
+import ContactList from '../../Chat-React/src/ContactList';
+import { useReducer } from 'react';
+import messengerReducer from '../../Chat-React/src/messengerReducer';
 
 
-let nextId = 1;
-const initialTasks = [
-    { id: 0, text: 'nihaoma', done: false }
-]
+const contacts = [
+    { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
+    { id: 1, name: 'Alice', email: 'alice@mail.com' },
+    { id: 2, name: 'Bob', email: 'bob@mail.com' },
+];
 
-function tasksReducer(tasks, action) {
-    console.log(action)
-    console.log(action)
-    switch (action.type) {
-        case 'added': {
-            return [...tasks,
-            {
-                id: action.id,
-                text: action.text,
-                done: false
-            }
-            ]
 
-        }
-        case 'edited': {
-            return tasks.map(task => {return task.id === action.task.id ? action.task : task}
-            )
-        }
+
+const initialState =
+{
+    selectedId: 0,
+    messages: {
     }
 }
 
 export default function App() {
-
-    const [tasks, dispatch] = useReducer(tasksReducer, initialTasks)
-    const [text, setText] = useState('')
-    console.log(tasks)
+    const [state, dispatch] = useReducer(messengerReducer, initialState)
+    const contact = contacts[state.selectedId]
 
 
-    function handleAddTask(text) {
-
-        dispatch({
-            type: 'added',
-            id: nextId++,
-            text: text
-        }
-        )
-    }
-
-
-    function handleChangeText(task) {
-
-        dispatch(
-            {
-                type: 'edited',
-                task: task
-            }
-        )
-    }
-
-    function handleDeleteText(taskId) {
-        setTasks(
-            tasks.filter(task => task.id !== taskId)
-        )
-    }
-
-    console.log(text)
     return (
-        <div>
-            <h1>TaskList</h1>
-            <input type="text"
-                value={text}
-                onChange={e => setText(e.target.value)}
-            />
-            <button onClick={() => { setText(''), handleAddTask(text) }}>add</button>
-            <TaskList tasks={tasks} onChange={handleChangeText} onDelete={handleDeleteText} />
-        </div>
+        <>
+            <ContactList contacts={contacts} />
+            <Chat />
+        </>
     )
 }
+
