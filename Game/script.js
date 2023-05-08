@@ -373,7 +373,7 @@ window.addEventListener('load', function () {
                     message1 = 'You Win'
                     message2 = 'Well Done'
                 } else {
-                    message1 = 'You Lose! xxxx'
+                    message1 = 'You Lose! '
                     message2 = 'Try again  next time!'
                 }
 
@@ -421,7 +421,7 @@ window.addEventListener('load', function () {
             this.ammoInterval = 500;
             this.gameOver = false;
             this.score = 0;
-            this.winningScore = 2000
+            this.winningScore = 20
             this.gameTime = 0;
             this.timeLimit = 50000;
             this.speed = 1

@@ -1,103 +1,84 @@
-import React, { createContext, useContext, useState } from 'react'
-const ThemeContext = createContext(null)
-const CurrentUserContext = createContext(null)
+import React, { useRef } from 'react'
+
+
+
+
+const catList = []
+
+for (let i = 0; i < 11; i++) {
+  catList.push({
+    id: i,
+    imgUrl: 'https://placekitten.com/250/200?image=' + i
+  })
+}
+
 
 export default function App() {
-  const [theme, setTheme] = useState('light')
-  const [currentUser, setCurrentUser] = useState(null)
-
-  return (
-
-    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-      <ThemeContext.Provider value={theme}>
-        <WelcomePanel />
-
-        <label htmlFor="">
-          <input type="checkbox" name="" id=""
-            onClick={e => setTheme(e.target.checked ? 'dark' : 'light')}
-          />
-          🌙dark mode
-        </label>
-      </ThemeContext.Provider>
-    </CurrentUserContext.Provider >
 
 
-  )
-}
+  
+  const itemRef = useRef(null)
+
+  function getMap() {
+    if (!itemRef.current) {
+      itemRef.current = new Map()
+    }
+
+    return itemRef.current
+  }
 
 
-function WelcomePanel() {
-  const { currentUser } = useContext(CurrentUserContext)
+  function getCat(id) {
+    const node = itemRef.current.get(id)
+    node.scrollIntoView({
+      behavior: 'smooth'
+    })
 
-  return (
-    <Panel title={'Welcome'}>
-      {currentUser !== null ? <Greeting /> : <LoginForm />
-      }
-
-    </Panel>
-  )
-}
-
-function Greeting() {
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext)
-  console.log(currentUser)
-  return (
-
-    <>
-      <p>You logged in as {currentUser.name} </p>
-      <Button
-        onClick={() => setCurrentUser(null)}
-      >Back </Button>
-    </>
-  )
-
-}
-
-function LoginForm() {
-  const [name, setName] = useState('')
-  const { setCurrentUser } = useContext(CurrentUserContext)
-
+  }
 
   return (
     <>
-      Name: <input type="text"
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-      <br />
-      <Button
-        disabled={name === ''}
-        onClick={() => setCurrentUser({ name: 'Li' })}
-      >Log in</Button>
-      <i>Fill in Both fields</i>
+      <nav>
+        <button onClick={() => getCat(1)}>
+          1
+        </button>
+        <button onClick={() => getCat(5)}>2</button>
+        <button onClick={() => getCat(9)}>3</button>
+      </nav>
+      <div>
+        <ul>
+          {
+            catList.map(
+              cat =>
+              (<li key={cat.id}
+                ref={(node) => {
+                  const map = getMap();
+                  console.log(node)
+                  if (node) {
+                    map.set(cat.id, node)
+                  } else {
+                    map.delete(cat.id)//当每个li元素被挂载或卸载时，它的ref回调函数会被调用，从而将节点存储到Map对象中或从Map对象中删除节点。
+                  }
+                }}
+              >
+                <img src={cat.imgUrl} />
+              </li>)
+
+            )
+
+          }
+
+
+
+
+        </ul>
+      </div>
+
     </>
-  )
-}
-
-
-function Panel({ title, children }) {
-  const theme = useContext(ThemeContext)
-  const className = 'panel-' + theme
-
-  return (
-    <section className={className}>
-      <h1>{title}</h1>
-      {children}
-    </section>
 
   )
 }
 
 
-function Button({ children, onClick, disabled }) {
-  const theme = useContext(ThemeContext)
-  const className = 'button-' + theme
 
-  return (
-    <button
-      disabled={disabled}
-      className={className}
-      onClick={onClick}
-    > {children}</button>
-  )
-}
+
